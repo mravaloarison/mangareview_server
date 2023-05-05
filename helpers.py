@@ -39,18 +39,13 @@ def get_details(manga):
 
     items = req['data']
 
-    author_res = get_data(f"https://kitsu.io/api/edge/manga/{items['id']}/staff?include=person")
-    author_data = author_res['included'][0]['attributes']
-    author_name = author_data['name']
-
     res.append({
         'manga_id': items['id'],
         'titles': items['attributes']['canonicalTitle'],
         'start_date': get_month_year(items['attributes']['startDate']),
         'poster_image': items['attributes']['posterImage']['original'],
         'manga_type': items['attributes']['mangaType'],
-        'descritpion': items['attributes']['synopsis'],
-        'author_name': author_name
+        'descritpion': items['attributes']['synopsis']
     })
 
     return res
